@@ -23,8 +23,7 @@ const userData = [
     }
   ];
   
-  console.log(typeof userData);
-  console.log(JSON.stringify(userData));
+
 const seedUser = () => User.bulkCreate(userData);
 
 module.exports = seedUser;
