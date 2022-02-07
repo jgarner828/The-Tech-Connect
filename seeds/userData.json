@@ -13,6 +13,11 @@
       "name": "Al Pacino",
       "email": "BigAl@gmail.com",
       "password": "password12345"
+    },
+    {
+      "name": "Batman",
+      "email": "NotInaCave@gmail.com",
+      "password": "password12345"
     }
   ]
   
