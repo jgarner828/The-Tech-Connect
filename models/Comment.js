@@ -8,7 +8,7 @@ Comment.init(
    comment: {
        type: DataTypes.STRING,
        allowNull: false,
-   }
+   },
   },
   {
     sequelize,

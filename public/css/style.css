@@ -7,13 +7,12 @@
     align-items: center;
     text-align: center;
     height: 100%;
-    width: 100vw;
 }
 
 .blogPost {
     outline: solid black 5px;
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
 }
 
 .blogTitle {
