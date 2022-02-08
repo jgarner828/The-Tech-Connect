@@ -1,10 +1,19 @@
 <div>
     <span>This is the homepage</span>
-    {{#each mappedBlogPosts}}
-        <div>
-            <h2>{{this.title}}</h2>
-            <p>{{this.content}}</p>
-            <p>Posted by: {{this.user.name}} on {{this.date_created}} </p>
-        </div>
-    {{/each}}
+
+    <div class='blogPostsContainer'> 
+        {{#each mappedBlogPosts}}
+            <div class='blogPost'>
+                <h2 class='blogTitle'>{{this.title}}</h2>
+                <p class='blogContent'>{{this.content}}</p>
+                <p>Posted by: {{this.user.name}} on {{this.date_created}} </p>
+                <div class='blogComments'>This is where comments will go</div>
+            </div>
+        {{/each}}
+    </div>
+
 </div>
+
+
+
+<script src="./js/homepage.js"></script>

@@ -5,12 +5,13 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
 
-    let allBlogPosts = await Blog.findAll( { include: User});
+
+    let allBlogPosts = await Blog.findAll({ include: { model: User, attributes: { exclude: ['password']}} });
     let mappedBlogPosts = allBlogPosts.map(blog => {
       return blog.get({ plain: true });
     })
 
-    console.log(mappedBlogPosts);
+    console.log(mappedBlogPosts)
 
     res.render('homepage', {mappedBlogPosts})
   } catch (err) {
@@ -29,3 +30,4 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
+
