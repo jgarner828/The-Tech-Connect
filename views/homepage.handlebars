@@ -1,3 +1,10 @@
 <div>
     <span>This is the homepage</span>
+    {{#each mappedBlogPosts}}
+        <div>
+            <h2>{{this.title}}</h2>
+            <p>{{this.content}}</p>
+            <p>Posted by: {{this.user.name}} on {{this.date_created}} </p>
+        </div>
+    {{/each}}
 </div>
