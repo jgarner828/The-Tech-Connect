@@ -6,18 +6,23 @@ router.get("/", async (req, res) => {
   try {
 
     let allBlogPosts = await Blog.findAll({
-      include: {
+      include: [{
         model: User,
         attributes: { exclude: ["password"] },
-      },
+        },
+        {
+        model: Comment, 
+        }]
     });
+
     let mappedBlogPosts = await allBlogPosts.map((blog) => {
       return blog.get({ plain: true });
     });
 
 
-    let allComments = await Comment.findAll();
-    console.log(allComments);
+
+    console.log(JSON.stringify(mappedBlogPosts));
+
 
 
     res.render("homepage", { mappedBlogPosts });

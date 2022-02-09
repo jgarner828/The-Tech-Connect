@@ -7,7 +7,13 @@
                 <h2 class='blogTitle'>{{this.title}}</h2>
                 <p class='blogContent'>{{this.content}}</p>
                 <p>Posted by: {{this.user.name}} on {{this.date_created}} </p>
-                <div class='blogComments'>This is where comments will go</div>
+                <div class='blogComments'>
+
+                    {{#each this.Comments}}
+                        <p>{{this.comment}}</p>
+                    {{/each}}
+
+                </div>
             </div>
         {{/each}}
     </div>
