@@ -2,6 +2,9 @@ const router = require("express").Router();
 const { User, Blog, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
+
+
+
 router.get("/", async (req, res) => {
   try {
 
@@ -25,7 +28,7 @@ router.get("/", async (req, res) => {
 
 
 
-    res.render("homepage", { mappedBlogPosts });
+    res.render("homepage", { mappedBlogPosts, logged_in: req.session.logged_in, });
   } catch (err) {
     res.status(500).json(err);
   }

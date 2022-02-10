@@ -13,7 +13,9 @@
 
 <div class='container-fluid d-flex flex-column align-items-center'>
     <h1>The Tech Connect</h1>
+    {{#unless logged_in}}
     <a href="../login">Login</a>
+    {{/unless}}
 </div>
     {{{body}}}
 </body>
