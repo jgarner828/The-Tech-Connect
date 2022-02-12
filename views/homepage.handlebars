@@ -8,26 +8,25 @@
     {{/unless}}
     {{#if logged_in}}
     <div>
-        <a href='../api/blog/createBlog'>Create Blog</a>
-        <a href='../api/blog/deleteBlog'>Delete Blog</a>
+        <a class='text-decoration-none fw-bolder m-2' href='../api/blog/createBlog'>Create Blog</a>
+        <a class='text-decoration-none fw-bolder m-2' href='../api/blog/deleteBlog'>Delete Blog</a>
     </div>  
     {{/if}}
     
-    <div class='container-fluid blogPostsContainer'> 
+    <div class='container-fluid d-flex flex-column align-items-center blogPostsContainer'> 
         {{#each mappedBlogPosts}}
             <div class='blogPost'>
-                <h2 class='blogTitle'>{{this.title}}</h2>
-                <p class='blogContent'>{{this.content}}</p>
-                <p>Posted by: {{this.user.name}} on {{this.date_created}} </p>
-                <p>Id: {{this.id}}</p>
+                <h2 class='blogTitle text-white bg-secondary'>{{this.title}}</h2>
+                <p class='blogContent fw-bold'>{{this.content}}</p>
+                <p class='fst-italic'>Posted by: {{this.user.name}} on {{this.date_created}} </p>
+                <p class=''>Blog Id: {{this.id}}</p>
 
-                <div class='blogComments'>
+                {{#each this.Comments}}
+                    <div class='blogComments'>
+                        <p>{{this.comment}}</p>   
+                    </div>
+                {{/each}}
 
-                    {{#each this.Comments}}
-                        <p>{{this.comment}}</p>
-                    {{/each}}
-
-                </div>
             </div>
         {{/each}}
     </div>
