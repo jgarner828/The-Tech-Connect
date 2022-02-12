@@ -43,4 +43,12 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.get("/createUser", (req, res) => {
+  try {
+    res.render("createUser");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
 module.exports = router;
