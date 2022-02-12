@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
         },
         {
         model: Comment, 
-        }]
+        }],
     });
 
     let mappedBlogPosts = await allBlogPosts.map((blog) => {
