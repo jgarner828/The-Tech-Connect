@@ -21,7 +21,7 @@ router.post('/addBlog', async (req, res) => {
             const { title, content } = req.body;
             console.log(title);
             console.log(content);
-             const addBlog = await Blog.create({ title: title, content: content })
+             const addBlog = await Blog.create({ title: title, content: content, user_id: req.session.user_id })
              if(!addBlog) {
                  res.status(500).json('Couldn\'t add new blog!');
              }
@@ -43,15 +43,32 @@ router.get('/deleteBlog', (req, res) => {
 
 
 
-router.post('/deleteBlog', (req, res) => {
+router.post('/deleteBlog', async (req, res) => {
     try {
-        console.log('inside deleteBlog POST request');
         const { id } = req.body
         console.log(`Deleting Blog number ${id}`);
-        const destroyBlog = Blog.destroy({ where: { id: id } })
-        if(!destroyBlog) {
-            res.status(500).json('Blog could not be deleted.')
+
+
+        const checkUser = await Blog.findByPk(id);
+
+        console.log(checkUser.user_id)
+        console.log(req.session.user_id)
+
+        let checkOwner = (checkUser.user_id === req.session.user_id)
+
+        console.log(checkOwner)
+        if(!checkOwner) {
+            res.status(500).json('Only the blog creator may delete.')
+            return;
+        } else {
+            console.log('trying to destroy Blog ${id} ')
+                const destroyBlog = await Blog.destroy({ where: { id: id } })
+                        if(!destroyBlog) {
+                            res.status(500).json('Blog could not be deleted.')
+                            return;
+                        }
         }
+        
         res.status(200).json('Successfully deleted.')
 
     } catch (error) {
