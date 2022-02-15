@@ -20,6 +20,8 @@
                 <p class='blogContent fw-bold'>{{this.content}}</p>
                 <p class='fst-italic'>Posted by: {{this.user.name}} on {{this.date_created}} </p>
                 <p class=''>Blog Id: {{this.id}}</p>
+                <input class='commentInput' id='{{this.id}}_comment'></input>
+                <button class='addCommentBtn button' id= '{{this.id}}'>Add Comment</button>
 
                 {{#each this.Comments}}
                     <div class='blogComments'>
@@ -36,3 +38,4 @@
 
 
 <script src="./js/homepage.js"></script>
+<script src="./js/addComment.js"></script>
