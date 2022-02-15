@@ -8,7 +8,7 @@
   
   # Project Description
   
-  **Web based blog for users to add content. Includes user authentication. Built using Node, Express, Express-Handlebars, and Sequalize in a Model, View, Controller design pattern.**
+  **Web based blog for users to add content. Includes user authentication. Built using Node, Express, Express-Handlebars, and Sequelize in a Model, View, Controller design pattern.**
 
   # Usage
 
