@@ -1,17 +1,14 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
-    const title = document.querySelector('#title').value.trim();
+    const id = document.querySelector('#id').value.trim();
     const content = document.querySelector('#content').value.trim();
   
-    if (title && content) {
+    if (id && content) {
 
-      console.log('submitting title and content');
-      console.log(title);
-      console.log(content);
-      const response = await fetch('/api/blog/addblog', {
+      const response = await fetch('/api/blog/updateblog', {
         method: 'POST',
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ id, content }),
         headers: { 'Content-Type': 'application/json' },
       });
   
@@ -23,8 +20,6 @@ const loginFormHandler = async (event) => {
     }
   };
   
-
-
 
 
 

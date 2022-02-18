@@ -3,19 +3,52 @@ const { Blog } = require('../../models');
 
 
 
-router.get('/createBlog', (req, res) => {
+router.get('/createblog', (req, res) => {
     try {
-        console.log('inside createBlog GET request');
         res.render("createBlog");
     } catch (error) {
         res.status(500).json(error);
     }
+})
 
+router.get('/updateblog', (req, res) => {
+    try {
+        res.render("updateBlog");
+    } catch (error) {
+        res.status(500).json(error);
+    }
 })
 
 
+router.post('/updateblog', async (req, res) => {
+    try {
+        const { id, content } = req.body
+        console.log(`Updating Blog number ${id}`);
 
-router.post('/addBlog', async (req, res) => {
+
+        const checkUser = await Blog.findByPk(id);
+
+        console.log(checkUser.user_id)
+        console.log(req.session.user_id)
+
+        let checkOwner = (checkUser.user_id === req.session.user_id)
+
+        console.log(checkOwner)
+        if(!checkOwner) {
+            res.status(500).json('Only the blog creator may delete.')
+            return;
+        } else {
+           Blog.update({ content }, {where: { id }})
+           res.redirect('/');
+        }
+        
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+
+router.post('/addblog', async (req, res) => {
     try {
         console.log('inside addBlog POST request');
             const { title, content } = req.body;
@@ -32,9 +65,8 @@ router.post('/addBlog', async (req, res) => {
     }
 })
 
-router.get('/deleteBlog', (req, res) => {
+router.get('/deleteblog', (req, res) => {
     try {
-        console.log('inside deleteBlog GET request');
         res.render("deleteBlog");
     } catch (error) {
         res.status(500).json(error)
@@ -43,7 +75,7 @@ router.get('/deleteBlog', (req, res) => {
 
 
 
-router.post('/deleteBlog', async (req, res) => {
+router.post('/deleteblog', async (req, res) => {
     try {
         const { id } = req.body
         console.log(`Deleting Blog number ${id}`);

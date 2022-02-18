@@ -53,7 +53,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.post('/addUser', async (req, res) => {
+router.post('/adduser', async (req, res) => {
   try {
         const { name, email, password } = req.body;
 
