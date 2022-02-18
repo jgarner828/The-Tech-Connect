@@ -44,6 +44,16 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.get('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 router.get("/createUser", (req, res) => {
   try {
     res.render("createUser");
